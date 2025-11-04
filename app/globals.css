@@ -41,7 +41,7 @@
 
   /* Accent text class */
   .font-accent {
-    @apply font-accent;
+    font-family: 'Roboto Serif', serif;
     font-weight: 100 !important;
     font-size: 25px !important; /* Mobile */
   }
