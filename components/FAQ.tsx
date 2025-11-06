@@ -1,9 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { getCurrentMonth, getCurrentYear } from "@/lib/dateUtils";
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const currentMonth = getCurrentMonth();
+  const currentYear = getCurrentYear();
 
   const faqs = [
     {
@@ -134,8 +137,8 @@ export default function FAQ() {
           </div>
 
           <p className="text-center text-gray-700 mb-6">
-            Only <span className="text-red-600 font-bold">2 spots remaining</span> for January 2026.<br />
-            Bonuses worth $273 expire January 31st.
+            Only <span className="text-red-600 font-bold">2 spots remaining</span> for {currentMonth} {currentYear}.<br />
+            Bonuses worth $273 expire end of {currentMonth}.
           </p>
 
           {/* Primary CTA */}

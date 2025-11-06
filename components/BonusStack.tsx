@@ -1,4 +1,14 @@
+"use client";
+
+import { getCurrentMonth, getCurrentYear, getNextMonth, getEndOfMonth, getMonthDay } from "@/lib/dateUtils";
+import CountdownTimer from "@/components/CountdownTimer";
+
 export default function BonusStack() {
+  const currentMonth = getCurrentMonth();
+  const currentYear = getCurrentYear();
+  const nextMonth = getNextMonth();
+  const endOfMonth = getEndOfMonth();
+  const lastDay = getMonthDay(endOfMonth);
   const bonuses = [
     {
       number: 1,
@@ -54,7 +64,7 @@ export default function BonusStack() {
             LIMITED-TIME OFFER
           </div>
           <h2 className="text-gray-900 mb-4">
-            BONUSES FOR JANUARY 2026<br />CLIENTS ONLY
+            BONUSES FOR {currentMonth.toUpperCase()} {currentYear}<br />CLIENTS ONLY
           </h2>
           <p className="font-bold text-gray-700">
             Total Bonus Value: $273
@@ -105,14 +115,15 @@ export default function BonusStack() {
           ))}
         </div>
 
-        {/* Expiration Warning */}
+        {/* Expiration Warning with Countdown */}
         <div className="bg-red-100 border-2 border-red-400 rounded-2xl p-8 text-center mb-8">
-          <p className="text-red-700 font-bold mb-2">
-            ⚠️ THESE BONUSES EXPIRE JANUARY 31, 2026
+          <p className="text-red-700 font-bold mb-4">
+            ⚠️ THESE BONUSES EXPIRE {currentMonth.toUpperCase()} {lastDay}, {currentYear}
           </p>
-          <p className="text-gray-700">
-            February 2026 clients receive different bonuses. Claim these therapy-specific systems now.
+          <p className="text-gray-700 mb-6">
+            {nextMonth} {currentYear} clients receive different bonuses. Claim these therapy-specific systems now.
           </p>
+          <CountdownTimer />
         </div>
 
         {/* CTA */}
@@ -121,7 +132,7 @@ export default function BonusStack() {
             href="#investment"
             className="button inline-block bg-black text-white px-10 py-5 rounded-xl font-semibold hover:bg-gray-800 transition-all shadow-xl hover:shadow-2xl"
           >
-            Claim January Bonuses - Start Now
+            Claim {currentMonth} Bonuses - Start Now
           </a>
         </div>
       </div>

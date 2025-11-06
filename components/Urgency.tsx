@@ -1,4 +1,16 @@
+"use client";
+
+import { getCurrentMonth, getCurrentYear, getNextMonth, getNextMonthYear, getEndOfMonth, getMonthDay } from "@/lib/dateUtils";
+import CountdownTimer from "@/components/CountdownTimer";
+
 export default function Urgency() {
+  const currentMonth = getCurrentMonth();
+  const currentYear = getCurrentYear();
+  const nextMonth = getNextMonth();
+  const nextMonthYear = getNextMonthYear();
+  const endOfMonth = getEndOfMonth();
+  const lastDay = getMonthDay(endOfMonth);
+
   const spots = [
     { number: 1, status: "FILLED", filled: true },
     { number: 2, status: "FILLED", filled: true },
@@ -20,8 +32,16 @@ export default function Urgency() {
             ⚠️ LIMITED AVAILABILITY
           </div>
           <h2 className="text-gray-900 mb-6">
-            JANUARY 2026 SPOTS FILLING FAST
+            {currentMonth.toUpperCase()} {currentYear} SPOTS FILLING FAST
           </h2>
+        </div>
+
+        {/* Countdown Timer */}
+        <div className="mb-12">
+          <h3 className="text-gray-900 font-bold mb-6 text-center">
+            TIME REMAINING TO CLAIM {currentMonth.toUpperCase()} BONUSES:
+          </h3>
+          <CountdownTimer />
         </div>
 
         {/* Capacity Explanation */}
@@ -56,8 +76,8 @@ export default function Urgency() {
             ))}
           </div>
           <p className="text-center text-gray-700">
-            <strong>Next Availability:</strong> February 2026{' '}
-            <span className="text-red-600">(but you'll miss January bonuses worth $273)</span>
+            <strong>Next Availability:</strong> {nextMonth} {nextMonthYear}{' '}
+            <span className="text-red-600">(but you'll miss {currentMonth} bonuses worth $273)</span>
           </p>
         </div>
 
@@ -65,10 +85,10 @@ export default function Urgency() {
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-8 border-2 border-blue-200 shadow-lg">
             <h3 className="text-gray-900 font-bold mb-4">
-              JANUARY-FEBRUARY = PEAK THERAPY SEASON
+              {currentMonth.toUpperCase()}-{nextMonth.toUpperCase()} = PEAK THERAPY SEASON
             </h3>
             <p className="text-gray-700 mb-4">
-              New Year resolutions, insurance deductible resets, seasonal depression - January and February are the highest months for therapy inquiries.
+              New Year resolutions, insurance deductible resets, seasonal depression - {currentMonth} and {nextMonth} are the highest months for therapy inquiries.
             </p>
             <p className="text-gray-700 font-semibold">
               Be discoverable when demand peaks.
@@ -127,10 +147,10 @@ export default function Urgency() {
             href="#investment"
             className="button inline-block bg-red-600 text-white px-12 py-6 rounded-xl font-bold hover:bg-red-700 transition-all shadow-2xl hover:shadow-3xl hover:scale-105 transform"
           >
-            CLAIM YOUR SPOT NOW - ONLY 2 REMAINING FOR JANUARY
+            CLAIM YOUR SPOT NOW - ONLY 2 REMAINING FOR {currentMonth.toUpperCase()}
           </a>
           <p className="text-gray-600 mt-4">
-            Limited to 5 clients monthly • Bonuses expire January 31st
+            Limited to 5 clients monthly • Bonuses expire {currentMonth} {lastDay}
           </p>
         </div>
       </div>
